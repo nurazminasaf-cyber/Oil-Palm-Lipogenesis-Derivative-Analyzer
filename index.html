@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Palm Lipogenesis & Derivative Analyzer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        palmgreen: {
+                            50: '#f2f9f4',
+                            100: '#e2f3e7',
+                            600: '#15803d',
+                            700: '#166534',
+                            800: '#14532d',
+                            900: '#134e4a',
+                        },
+                        palmgold: {
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Top Banner / Navigation -->
+    <header class="bg-palmgreen-900 text-white shadow-md py-6 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="bg-palmgold-500 text-palmgreen-900 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Agro Product Technology (SFP)</span>
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">Oil Palm Lipogenesis & Derivative Analyzer</h1>
+                <p class="text-emerald-100 text-sm mt-1">Mathematical Modeling of Mesocarp Oil Synthesis Rates ($f'(x)$) in Malaysian *Elaeis guineensis*</p>
+            </div>
+            <div class="flex items-center gap-3 bg-palmgreen-800/80 p-3 rounded-lg border border-emerald-700/50">
+                <div class="w-10 h-10 rounded-full bg-palmgold-500 flex items-center justify-center text-palmgreen-900 font-bold">f'(x)</div>
+                <div class="text-xs">
+                    <p class="font-semibold text-white">Calculus in Agro-Bioscience</p>
+                    <p class="text-emerald-200">Interactive Learning Module</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Column: Scientific Problem & Formula -->
+        <section class="lg:col-span-5 flex flex-col gap-6">
+            <!-- Bioscience Scenario Intro -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-bold text-palmgreen-800 flex items-center gap-2 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    The Bioscience Problem
+                </h2>
+                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    In Malaysia, optimizing the harvest cycle of Oil Palm is critical for maximizing <strong>Oil Extraction Rate (OER)</strong>. 
+                    During fruit development, lipids accumulate in the mesocarp (pulp) cell tissue. 
+                    This lipogenesis is slow at first, accelerates rapidly, and then plateaus as the fruit reaches absolute ripeness.
+                </p>
+                <div class="bg-palmgreen-50 p-4 rounded-xl border-l-4 border-palmgreen-600">
+                    <h3 class="text-xs font-bold uppercase text-palmgreen-800 tracking-wider mb-1">Why Derivatives Matter:</h3>
+                    <p class="text-xs text-palmgreen-900 leading-relaxed">
+                        While the absolute oil content $f(x)$ tells us the current oil yield, the <strong>first derivative $f'(x)$ (Rate of Oil Synthesis)</strong> pinpoints the precise metabolic peak of the plant. If we harvest during peak synthesis rate, we miss potential yield. Harvesting when the rate drops to zero signals maximum cumulative yield—but waiting too long triggers cellular breakdown, rising Free Fatty Acids (FFA), and acidic contamination of the crude palm oil (CPO).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mathematical Modeling Section -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-bold text-palmgreen-800 flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    Mathematical Model (Logistic Growth)
+                </h2>
+                <p class="text-xs text-gray-500 mb-4">
+                    We model the cumulative oil percentage of the dry mesocarp $f(x)$ over time $x$ (in Weeks After Anthesis, WAA) using a generalized logistic function:
+                </p>
+
+                <!-- LaTeX Formulas -->
+                <div class="space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <div>
+                        <p class="text-xs font-semibold text-gray-500 mb-1">Cumulative Oil Content (% Dry Base):</p>
+                        <div class="overflow-x-auto text-sm py-2">
+                            $$f(x) = \frac{L}{1 + e^{-k(x - x_0)}}$$
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-3">
+                        <p class="text-xs font-semibold text-gray-500 mb-1">Accumulation Rate (Derivative):</p>
+                        <div class="overflow-x-auto text-sm py-2">
+                            $$f'(x) = \frac{L \cdot k \cdot e^{-k(x - x_0)}}{(1 + e^{-k(x - x_0)})^2}$$
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parameters Table -->
+                <div class="mt-4">
+                    <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Parameters based on Malaysian Field Data:</h4>
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                        <div class="bg-gray-50 p-2 rounded border border-gray-100">
+                            <span class="block font-bold text-palmgreen-700">$L = 80\% $</span>
+                            <span class="text-[10px] text-gray-500">Max Oil Capacity</span>
+                        </div>
+                        <div class="bg-gray-50 p-2 rounded border border-gray-100">
+                            <span class="block font-bold text-palmgreen-700">$k = 0.8$</span>
+                            <span class="text-[10px] text-gray-500">Synthesis Coeff.</span>
+                        </div>
+                        <div class="bg-gray-50 p-2 rounded border border-gray-100">
+                            <span class="block font-bold text-palmgreen-700">$x_0 = 17 \text{ WAA}$</span>
+                            <span class="text-[10px] text-gray-500">Peak Synthesis Pt.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authentic Malaysian Literature Sources -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Data & Bioscience References</h2>
+                <ul class="space-y-2 text-xs text-gray-600">
+                    <li class="flex items-start gap-2">
+                        <span class="text-palmgold-600 font-semibold">1.</span>
+                        <span><strong>MPOB (Malaysian Palm Oil Board) Research:</strong> "Lipid Metabolism during Fruit Development in <em>Elaeis guineensis</em> Jacq." (<em>MPOB Palm Oil Developments Web Portal</em>)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-palmgold-600 font-semibold">2.</span>
+                        <span><strong>Journal of Oil Palm Research (JOPR):</strong> "Physiological Changes and Mesocarp Oil Synthesis of Palm Fruit Bunches in Selangor and Johor Plantations"</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Right Column: Interactive Graph & Live Diagnostic -->
+        <section class="lg:col-span-7 flex flex-col gap-6">
+            
+            <!-- Graph Container -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-palmgreen-800">Lipogenesis Accumulation & Synthesis Rates</h2>
+                        <p class="text-xs text-gray-500">Interactive Chart: Hover or click on the data points to evaluate the derivative</p>
+                    </div>
+                    <div class="flex gap-4 text-xs font-semibold">
+                        <span class="flex items-center gap-1.5 text-palmgreen-600">
+                            <span class="w-3 h-3 rounded-full bg-palmgreen-600"></span> f(x) Accumulation
+                        </span>
+                        <span class="flex items-center gap-1.5 text-palmgold-600">
+                            <span class="w-3 h-3 rounded bg-palmgold-500"></span> f'(x) Synthesis Rate
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Canvas Wrapper -->
+                <div class="relative flex-grow min-h-[300px] sm:min-h-[360px] w-full">
+                    <canvas id="lipogenesisChart"></canvas>
+                </div>
+
+                <!-- Interactive Prompt -->
+                <div class="mt-3 text-center text-xs bg-emerald-50 text-emerald-800 py-1.5 px-3 rounded-lg border border-emerald-100 font-medium animate-pulse">
+                    💡 Touch or Click on any point on the chart lines above to view a detailed bioscience diagnosis!
+                </div>
+            </div>
+
+            <!-- Live Diagnostic Panel (Active State) -->
+            <div id="diagnosticPanel" class="bg-gradient-to-r from-palmgreen-800 to-palmgreen-900 text-white p-6 rounded-2xl shadow-md border border-palmgreen-700 relative overflow-hidden transition-all duration-300 transform">
+                <!-- Decorative background elements -->
+                <div class="absolute right-0 top-0 opacity-10 translate-x-8 -translate-y-8 pointer-events-none">
+                    <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-4 border-b border-palmgreen-700 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-palmgold-500 text-palmgreen-900 rounded-lg font-bold text-sm" id="diagWeekBadge">17.0 WAA</span>
+                            <div>
+                                <h3 class="text-sm font-bold tracking-wide uppercase text-emerald-300">Diagnostic Analyzer</h3>
+                                <p class="text-[10px] text-emerald-100/70" id="diagPhaseLabel">Rapid Lipogenesis Peak Phase</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs block text-emerald-200">Current Phase Rate</span>
+                            <span class="text-xl font-extrabold text-white" id="diagRateLabel">16.00 %/week</span>
+                        </div>
+                    </div>
+
+                    <!-- Diagnostic Formula Visualization -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Math Output -->
+                        <div class="bg-palmgreen-900/50 p-4 rounded-xl border border-palmgreen-700/60 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] uppercase text-emerald-400 font-bold tracking-wider block mb-1">Calculus Calculation</span>
+                                <div class="text-xs space-y-1.5 font-mono text-emerald-100">
+                                    <p class="flex justify-between">
+                                        <span>Weeks ($x$):</span> 
+                                        <span class="text-white font-bold" id="valX">17.0 WAA</span>
+                                    </p>
+                                    <p class="flex justify-between">
+                                        <span>Total Oil ($f(x)$):</span> 
+                                        <span class="text-white font-bold" id="valFx">40.0 %</span>
+                                    </p>
+                                    <p class="flex justify-between border-t border-palmgreen-800 pt-1 mt-1">
+                                        <span>Rate ($f'(x)$):</span> 
+                                        <span class="text-palmgold-500 font-bold" id="valFPrimeX">16.0 % / week</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bioscience Explanation -->
+                        <div class="flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] uppercase text-emerald-400 font-bold tracking-wider block mb-1">Bioscience Field Report</span>
+                                <p id="laymanExplanation" class="text-xs text-emerald-100 leading-relaxed">
+                                    At 17 weeks after anthesis, the oil synthesis enzyme pathway is working at its absolute limit. Over 16% of total mesocarp mass is being converted into stable oil droplets per week. Do not harvest now, as the fruit has not reached maximum capacity.
+                                </p>
+                            </div>
+                            <!-- Harvest Action Recommendation Tag -->
+                            <div class="mt-3 flex items-center gap-2">
+                                <span class="text-[10px] font-bold uppercase text-palmgreen-900 bg-palmgold-500 px-2 py-0.5 rounded" id="actionBadge">DO NOT HARVEST</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-6 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>© 2026 Malaysian Agro Product Technology Educational Modules. Created for academic demonstration of calculus derivatives in plant biology.</p>
+            <p>Developed using <strong>Chart.js</strong>, <strong>Tailwind CSS</strong>, and <strong>MathJax</strong>.</p>
+        </div>
+    </footer>
+
+    <!-- Main Logic Script -->
+    <script>
+        // Constants representing the biological parameters
+        const L = 80.0;     // Maximum oil accumulation %
+        const k = 0.8;      // Synthesis constant
+        const x0 = 17.0;    // Peak synthesis week (inflection point)
+
+        // Mathematical Function of Oil Palm Accumulation f(x)
+        function f(x) {
+            return L / (1 + Math.exp(-k * (x - x0)));
+        }
+
+        // First Derivative f'(x) - Rate of Oil Accumulation
+        function fPrime(x) {
+            const expTerm = Math.exp(-k * (x - x0));
+            const denominator = Math.pow(1 + expTerm, 2);
+            return (L * k * expTerm) / denominator;
+        }
+
+        // Generate data points for the graph (x ranges from Week 12 to Week 22 with step of 0.5)
+        const labels = [];
+        const accumulationData = [];
+        const synthesisData = [];
+
+        for (let x = 12.0; x <= 22.1; x += 0.5) {
+            labels.push(x.toFixed(1));
+            accumulationData.push(f(x).toFixed(2));
+            synthesisData.push(fPrime(x).toFixed(2));
+        }
+
+        // Live Diagnostic Panel UI Update Logic
+        function updateDiagnostic(xValue) {
+            const x = parseFloat(xValue);
+            const fx = f(x);
+            const fpx = fPrime(x);
+
+            // Update numerical values
+            document.getElementById('diagWeekBadge').innerText = `${x.toFixed(1)} WAA`;
+            document.getElementById('diagRateLabel').innerText = `${fpx.toFixed(2)} %/wk`;
+            document.getElementById('valX').innerText = `${x.toFixed(1)} WAA`;
+            document.getElementById('valFx').innerText = `${fx.toFixed(1)}% of Dry Weight`;
+            document.getElementById('valFPrimeX').innerText = `${fpx.toFixed(2)}% Dry Wt. / Week`;
+
+            // State indicators
+            let phase = "";
+            let explanation = "";
+            let action = "";
+            let actionColorClass = "bg-red-500 text-white";
+
+            if (x < 15.0) {
+                phase = "Lag / Slow Accumulation Phase";
+                explanation = `At ${x.toFixed(1)} Weeks After Anthesis (WAA), lipogenesis is in its infancy. Synthetic enzyme paths have newly matured. Total oil is low (${fx.toFixed(1)}%), and accumulation rate is barely ${fpx.toFixed(2)}% per week. Harvesting now leads to high moisture and empty fruit bunches.`;
+                action = "CRITICAL: DO NOT HARVEST";
+                actionColorClass = "bg-red-600 text-white";
+            } else if (x >= 15.0 && x <= 18.5) {
+                if (Math.abs(x - 17.0) < 0.2) {
+                    phase = "Peak Inflection / Lipogenesis Surge Peak";
+                    explanation = `At exactly 17.0 WAA, the derivative peaks at its maximum (${fpx.toFixed(2)}%/week). The cell structure is turning simple sugars into complex lipids at lightning speed. While rate is maximized, total accumulation is only ${fx.toFixed(1)}%. This is the transition peak; harvesting still misses final yields.`;
+                    action = "STEADY STATE: KEEP ON TREE";
+                    actionColorClass = "bg-amber-500 text-palmgreen-900";
+                } else {
+                    phase = "Log / Rapid Accel Synthesis Phase";
+                    explanation = `At ${x.toFixed(1)} WAA, lipid synthesis is racing forward with a strong rate of ${fpx.toFixed(2)}% dry base/week. Mesocarp oil content stands at ${fx.toFixed(1)}%. The tree is highly active and rapidly investing sugars into lipids.`;
+                    action = "STEADY STATE: DO NOT HARVEST";
+                    actionColorClass = "bg-amber-400 text-palmgreen-900";
+                }
+            } else if (x > 18.5 && x <= 20.5) {
+                phase = "Deceleration & Consolidation Phase";
+                explanation = `At ${x.toFixed(1)} WAA, cumulative oil has reached ${fx.toFixed(1)}% (approaching its limit). The derivative is slowing down to ${fpx.toFixed(2)}%/week. The biochemical factory is preparing to wind down. Fruit is ripening, getting orange, and starting to loosen.`;
+                action = "PREPARE HARVEST CREW";
+                actionColorClass = "bg-yellow-400 text-palmgreen-900";
+            } else {
+                phase = "Senescence / Mature Plateau Phase";
+                explanation = `At ${x.toFixed(1)} WAA, cumulative oil has fully plateaued around ${fx.toFixed(1)}%, and synthesis rate has dropped to practically zero (${fpx.toFixed(2)}%/week). Harvesting MUST occur immediately! Waiting any longer will cause cellular membranes to rupture, releasing natural lipases which hydrolyze triglycerides into ruinous Free Fatty Acids (FFA).`;
+                action = "OPTIMAL HARVEST WINDOW! SECURE IMMEDIATELY";
+                actionColorClass = "bg-green-500 text-palmgreen-900";
+            }
+
+            // Apply updates to DOM elements
+            document.getElementById('diagPhaseLabel').innerText = phase;
+            document.getElementById('laymanExplanation').innerText = explanation;
+            
+            const badge = document.getElementById('actionBadge');
+            badge.innerText = action;
+            badge.className = `text-[10px] font-extrabold uppercase px-2.5 py-1 rounded tracking-wide ${actionColorClass}`;
+        }
+
+        // Initialize Chart.js
+        let lipoChart;
+
+        window.onload = function() {
+            const ctx = document.getElementById('lipogenesisChart').getContext('2d');
+
+            lipoChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Cumulative Oil f(x) (%)',
+                            data: accumulationData,
+                            borderColor: '#166534', // Emerald Green
+                            backgroundColor: 'rgba(22, 101, 52, 0.05)',
+                            borderWidth: 3,
+                            yAxisID: 'yAccumulation',
+                            tension: 0.25,
+                            fill: true,
+                            pointHoverRadius: 8,
+                            pointHoverBackgroundColor: '#166534'
+                        },
+                        {
+                            label: 'Accumulation Rate f\'(x) (%/week)',
+                            data: synthesisData,
+                            borderColor: '#ca8a04', // Amber/Yellow
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            yAxisID: 'yRate',
+                            tension: 0.25,
+                            fill: false,
+                            pointHoverRadius: 8,
+                            pointHoverBackgroundColor: '#ca8a04'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + (context.datasetIndex === 0 ? '%' : ' %/week');
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time in Weeks After Anthesis (WAA)',
+                                font: {
+                                    weight: 'bold',
+                                    size: 11
+                                },
+                                color: '#134e4a'
+                            },
+                            grid: {
+                                color: '#f3f4f6'
+                            }
+                        },
+                        yAccumulation: {
+                            type: 'linear',
+                            position: 'left',
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Cumulative Oil Content (%)',
+                                font: {
+                                    weight: 'bold'
+                                },
+                                color: '#166534'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + "%";
+                                }
+                            },
+                            grid: {
+                                color: '#f3f4f6'
+                            }
+                        },
+                        yRate: {
+                            type: 'linear',
+                            position: 'right',
+                            min: 0,
+                            max: 20,
+                            title: {
+                                display: true,
+                                text: 'Rate of Synthesis f\'(x) (%/week)',
+                                font: {
+                                    weight: 'bold'
+                                },
+                                color: '#ca8a04'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + " %/wk";
+                                }
+                            },
+                            grid: {
+                                drawOnChartArea: false // only want grid lines for one axis
+                            }
+                        }
+                    },
+                    // Click handler to catch user interaction and load the custom calculus analyzer
+                    onClick: (event, activeElements) => {
+                        if (activeElements.length > 0) {
+                            const index = activeElements[0].index;
+                            const xVal = labels[index];
+                            updateDiagnostic(xVal);
+                        }
+                    }
+                }
+            });
+
+            // Initialize display on peak week
+            updateDiagnostic(17.0);
+        };
+    </script>
+</body>
+</html>
